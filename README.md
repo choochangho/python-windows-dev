@@ -318,3 +318,40 @@ Status: Downloaded newer image for mysql:8.0.36
 C:\Users\chooc>docker run -p 6379:6379 --name redis -d redis:latest --requirepass "password"
 2ecfcbd8f9e42ab11f277533b877720136f4d297af8b4badbf226f1824cd9010
 ```
+
+# 7 VSCode
+
+WSL에 저장된 파이썬 프로젝트를 vscode에서 개발하기 위한 방법입니다.
+
+## 7.1 Extention 설치
+
+- WSL
+- Python
+
+![WSL Extension](./images/ext-wsl.png)
+![Python Extention](./images/ext-redis.png)
+
+## 7.2 VScode 프로젝트 설정
+
+먼저 WSL 로 진입하고 프로젝트 폴더로 이동합니다. 프로젝트 루트 디렉토리에서 vscode 를 로드합니다.
+
+```bash
+chchu@chchu:~/projects/project_A$ code .
+```
+
+VSCode 가 실행됩니다.
+
+이제 WSL 에 생성한 파이썬 가상환경을 프로젝트에서 사용할 파이썬 인터프리터로 설정합니다.
+
+Ctrl + Shift + P 를 누르고 'Python: Select Interpreter' 를 선택합니다.
+
+![Select Interpreter](./images/select-interpreter.png)
+![Select Pyenv](./images/select-pyenv.png)
+
+VScode 에서 터미널을 실행하고 프로젝트의 파이썬 버전을 확인합니다.
+
+![Terminal](./images/vscode-terminal.png)
+
+파이썬 버전을 확인합니다.
+
+![Python Version](./images/vscode-python-version.png)
