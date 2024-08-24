@@ -313,3 +313,8 @@ Status: Downloaded newer image for mysql:8.0.36
 ![mysql docker](./images/mysql-docker.png)
 
 ## 6.2 redis
+
+```bash
+C:\Users\chooc>docker run -p 6379:6379 --name redis -d redis:latest --requirepass "password"
+2ecfcbd8f9e42ab11f277533b877720136f4d297af8b4badbf226f1824cd9010
+```
