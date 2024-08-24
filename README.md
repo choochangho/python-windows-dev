@@ -1,238 +1,315 @@
-# 1. 윈도우 환경
-
-![윈도우 정보](./images/window-information.png)
-
-# 2. 파이썬 설치
-
-[공식 웹 사이트](https://www.python.org/downloads/)
-
-## 2.1 다운로드
-
-![다운로드](./images/python-download-link.png)
-
-## 2.2 설치
-![옵션선택](./images/python-installation-1.png)
-1. 'Add python.exe to PATH' 체크
-2. 'Install Now' 클릭
-
-![설치](./images/python-installation-2.png)
-![설치완료](./images/python-installation-3.png)
-
-## 2.3 파이썬 기본 설정
-이전에 다른 버전의 파이썬이 설치되어 있는 경우 기존 버전의 파이썬을 사용하도록 환경변수가 설정되어 있을 수 있다. 여기서는 새로운 버전의 파이썬을 사용하도록 환경 변수를 수정한다.
-
-![여러개의 버전이 설치된 예](./images/python-versions-installed.png)
-
-### 2.3.1 환경변수 수정
-
-![환경변수 수정](./images/python-widows-system.png)
-![환경변수 수정](./images/environment.png)
-![환경변수 수정](./images/edit-environment-variables.png)
-![환경변수 선택-수정](./images/select-edit-environment-variables.png)
-- C:\Users\{user name}\AppData\Local\Programs\Python\Python39\Scripts -> C:\Users\{user name}\AppData\Local\Programs\Python\Python312\Scripts
-
-- C:\Users\{user name}\AppData\Local\Programs\Python\Python39 -> C:\Users\{user name}\AppData\Local\Programs\Python\Python312
-
-![환경변수 수정 완료](./images/ok-edit-environment-variables.png)
-
-## 2.4 파이썬 버전 확인
-
-윈도우 커맨드 창에서 버전 확인
-```bash
-c:\Users\chcoc> python --version
-Python 3.12.5
-```
-![버전 확인](./images/python-version-check.png)
-
-# 3. 프로젝트용 파이썬 버전 설치
-시스템에 기본 설치된 최신 버전의 파이썬을 이용하여 프로젝트를 시작할 수 있으나 특정 버전이 필요한 경우 새로운 파이썬 버전을 새로 설치하고 사용하는 것보다 pyenv로 특정 버전을 설치하고 해당 프로젝트에서 사용하는 방법을 알아본다.
-
-## 3.1 pyenv
-[pyenv 공식 웹 사이트](https://github.com/pyenv-win/pyenv-win)
-
-### 3.1.1 pyenv 설치
-
-**Windows PowerShell** 을 관리자 권한으로 실행시킨다. 
-
-먼저 'UnauthorizedAccess' 에러에 대응하기 위해 다음과 같은 커맨드를 먼저 실행한다.
-```bash
-PS C:\Users\chooc> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine
-```
-이제 pyen를 설치한다.
-```bash
-PS C:\Users\chooc> Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/pyenv-win/pyenv-win/master/pyenv-win/install-pyenv-win.ps1" -OutFile "./install-pyenv-win.ps1"; &"./install-pyenv-win.ps1"
-```
-
-전체 설치과정은 다음과 같다.
-```bash
-Windows PowerShell
-Copyright (C) Microsoft Corporation. All rights reserved.
-                                                                                                                        Install the latest PowerShell for new features and improvements! https://aka.ms/PSWindows                                                                                                                                                       PS C:\Users\chooc> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine                                PS C:\Users\chooc> Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/pyenv-win/pyenv-win/master/pyenv-win/install-pyenv-win.ps1" -OutFile "./install-pyenv-win.ps1"; &"./install-pyenv-win.ps1"
-
-
-    Directory: C:\Users\chooc
-
-
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
-d-----        2024-08-24  오후 12:05                .pyenv                                                              
-pyenv-win is successfully installed. You may need to close and reopen your terminal before using it.
-
-
-PS C:\Users\chooc>
-```
-
-### 3.1.2 설치 확인
-
-커맨드 창을 재 기동한다.
-```bash
-C:\Users\chooc\>pyenv --version
-pyenv 3.1.1
-```
-
-### 3.1.3 기본 사용 방법
-설치 가능한 파이썬 버전 확인
-```bash
-C:\Users\chooc>pyenv install --list
-:: [Info] ::  Mirror: https://www.python.org/ftp/python
-:: [Info] ::  Mirror: https://downloads.python.org/pypy/versions.json
-:: [Info] ::  Mirror: https://api.github.com/repos/oracle/graalpython/releases
-...
-3.10.11-win32
-3.10.11
-3.11.0a1-win32
-3.11.0a1
-3.11.0a2-win32
-3.11.0a2
-...
-C:\Users\chooc>
-```
-
-### 3.1.4 특정 버전설치(3.10.11)
-
-```bash
-C:\Users\chooc>pyenv install 3.10.11
-:: [Info] ::  Mirror: https://www.python.org/ftp/python
-:: [Info] ::  Mirror: https://downloads.python.org/pypy/versions.json
-:: [Info] ::  Mirror: https://api.github.com/repos/oracle/graalpython/releases
-:: [Downloading] ::  3.10.11 ...
-:: [Downloading] ::  From https://www.python.org/ftp/python/3.10.11/python-3.10.11-amd64.exe
-:: [Downloading] ::  To   C:\Users\chooc\.pyenv\pyenv-win\install_cache\python-3.10.11-amd64.exe
-:: [Installing] ::  3.10.11 ...
-:: [Info] :: completed! 3.10.11
-```
-
-### 3.1.5 설치된 버전 확인
-```bash
-PS D:\docs\python-windows-dev\projects> pyenv versions
-  3.10.11
-```
-
-### 3.1.6 pyenv로 설치된 파이썬 경로 확인
-```bash
-PS D:\docs\python-windows-dev\projects> pyenv which python
-C:\Users\chooc\.pyenv\pyenv-win\versions\3.10.11\python.exe
-```
-위의 경로에서 파이썬의 바이너리 뿐만 아니라 pip 도 확인할 수 있다.
-
-
-## 3.2 virtualenv 로 파이썬 가상환경 만들기
-
-### 3.2.1 virtualenv 설치
-
-```bash
-PS D:\docs\python-windows-dev\projects> C:\Users\chooc\.pyenv\pyenv-win\versions\3.10.11\scripts\pip.exe install virtualenv
-Collecting virtualenv
-  Using cached virtualenv-20.26.3-py3-none-any.whl (5.7 MB)
-Collecting filelock<4,>=3.12.2
-  Using cached filelock-3.15.4-py3-none-any.whl (16 kB)
-Collecting platformdirs<5,>=3.9.1
-  Using cached platformdirs-4.2.2-py3-none-any.whl (18 kB)
-Collecting distlib<1,>=0.3.7
-  Using cached distlib-0.3.8-py2.py3-none-any.whl (468 kB)
-Installing collected packages: distlib, platformdirs, filelock, virtualenv
-  WARNING: The script virtualenv.exe is installed in 'C:\Users\chooc\.pyenv\pyenv-win\versions\3.10.11\Scripts' which is not on PATH.
-  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
-Successfully installed distlib-0.3.8 filelock-3.15.4 platformdirs-4.2.2 virtualenv-20.26.3
-
-[notice] A new release of pip is available: 23.0.1 -> 24.2
-[notice] To update, run: C:\Users\chooc\.pyenv\pyenv-win\versions\3.10.11\python.exe -m pip install --upgrade pip
-PS D:\docs\python-windows-dev\projects>
-```
-
-### 3.2.2 가상환경 생성
-
-```bash
-PS D:\docs\python-windows-dev\projects> C:\Users\chooc\.pyenv\pyenv-win\versions\3.10.11\scripts\virtualenv.exe -p C:\Users\chooc\.pyenv\pyenv-win\versions\3.10.11\python.exe venv
-created virtual environment CPython3.10.11.final.0-64 in 1271ms
-  creator CPython3Windows(dest=D:\docs\python-windows-dev\projects\venv, clear=False, no_vcs_ignore=False, global=False)
-  seeder FromAppData(download=False, pip=bundle, setuptools=bundle, wheel=bundle, via=copy, app_data_dir=C:\Users\chooc\AppData\Local\pypa\virtualenv)
-    added seed packages: pip==24.1, setuptools==70.1.0, wheel==0.43.0
-  activators BashActivator,BatchActivator,FishActivator,NushellActivator,PowerShellActivator,PythonActivator
-```
-
-- -p 옵션에 사용하고자 하는 파이썬 버전의 바이너리 패스를 지정한다
-- venv 가상환경으로 생성되는 디렉토리명
-
-### 3.2.3 가상환경 진입
-
-```bash
-PS D:\docs\python-windows-dev\projects> dir
-
-
-    Directory: D:\docs\python-windows-dev\projects
-
-
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
-d-----        2024-08-24   오후 1:21                venv
-
--a----        2024-08-24  오후 12:51              9 .python-version
-```
+> [!CAUTION]
+> 본 가이드는 윈도우의 WSL 환경을 기준으로 합니다.
 
 > [!CAUTION]
-> PowerShell 에서는 가상환경진입이 정상적으로 이루어지지 않는다. PowerShell 대신 명령 프롬프트를 사용한다. 
+> uvicorn 에서 사용하는 uvloop은 리눅스 계엘에서만 설치가능 합니다.
+
+# 1 WSL 진입
+
+명령 프롬프트 실행 후 'wsl' 입력합니다.
 
 ```bash
-D:\docs\python-windows-dev\projects>.\venv\Scripts\activate
+Microsoft Windows [Version 10.0.22631.4037]
+(c) Microsoft Corporation. All rights reserved.
 
-D:\docs\python-windows-dev\projects>()
-
-(venv) D:\docs\python-windows-dev\projects>
-(venv) D:\docs\python-windows-dev\projects>
-(venv) D:\docs\python-windows-dev\projects>
-(venv) D:\docs\python-windows-dev\projects>python -V
-Python 3.10.11
+C:\Users\chooc>wsl
+chchu@chchu:/mnt/c/Users/chooc$
 ```
 
-# 4. 소스 코드 클론
+> [!TIP]
+> 위의 방법에서 에러가 발생한 경우 아래의 방법으로 실행한다.
+
+![우분투 WSL 실행](./images/ws-ubuntu-run.png)
+
+
+우분투에 기본 설치된 파이썬 버전을 확인합니다.
+```bash
+chchu@chchu:/mnt/c/Users/chooc$ python3 -V
+Python 3.10.6
+```
+
+# 2 pyenv
+
+프로젝트마다 서로 다른 파이썬 버전이 필요할 수 있습니다.
+pyenv 는 시스템에 여러 버전의 파이썬을 설치할 수 있도록 해줍니다. 
+
+[pyenv](https://github.com/pyenv/pyenv)
+
+## 2.1 설치
+
+1. home 디렉토리로 이동
+```bash
+$ cd ~
+```
+
+2. pyenv 설치
+```bash
+$ curl https://pyenv.run | bash
+```
+
+3. PTH 추가
+```bash
+$ echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
+$ echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
+$ echo 'eval "$(pyenv init -)"' >> ~/.bashrc
+```
+
+전체 설치 과정 및 결과
+```bash
+chchu@chchu:/mnt/c/Users/chooc$ cd ~
+chchu@chchu:~$ curl https://pyenv.run | bash
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   270  100   270    0     0   4031      0 --:--:-- --:--:-- --:--:--  4090
+Cloning into '/home/chchu/.pyenv'...
+remote: Enumerating objects: 1273, done.
+remote: Counting objects: 100% (1273/1273), done.
+remote: Compressing objects: 100% (701/701), done.
+remote: Total 1273 (delta 752), reused 737 (delta 439), pack-reused 0 (from 0)
+Receiving objects: 100% (1273/1273), 630.40 KiB | 19.10 MiB/s, done.
+Resolving deltas: 100% (752/752), done.
+Cloning into '/home/chchu/.pyenv/plugins/pyenv-doctor'...
+remote: Enumerating objects: 11, done.
+remote: Counting objects: 100% (11/11), done.
+remote: Compressing objects: 100% (9/9), done.
+remote: Total 11 (delta 1), reused 5 (delta 0), pack-reused 0 (from 0)
+Receiving objects: 100% (11/11), 38.72 KiB | 6.45 MiB/s, done.
+Resolving deltas: 100% (1/1), done.
+Cloning into '/home/chchu/.pyenv/plugins/pyenv-update'...
+remote: Enumerating objects: 10, done.
+remote: Counting objects: 100% (10/10), done.
+remote: Compressing objects: 100% (6/6), done.
+remote: Total 10 (delta 1), reused 5 (delta 0), pack-reused 0 (from 0)
+Receiving objects: 100% (10/10), done.
+Resolving deltas: 100% (1/1), done.
+Cloning into '/home/chchu/.pyenv/plugins/pyenv-virtualenv'...
+remote: Enumerating objects: 64, done.
+remote: Counting objects: 100% (64/64), done.
+remote: Compressing objects: 100% (56/56), done.
+remote: Total 64 (delta 10), reused 27 (delta 1), pack-reused 0 (from 0)
+Receiving objects: 100% (64/64), 41.90 KiB | 6.98 MiB/s, done.
+Resolving deltas: 100% (10/10), done.
+
+WARNING: seems you still have not added 'pyenv' to the load path.
+
+# Load pyenv automatically by appending
+# the following to
+# ~/.bash_profile if it exists, otherwise ~/.profile (for login shells)
+# and ~/.bashrc (for interactive shells) :
+
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+# Restart your shell for the changes to take effect.
+
+# Load pyenv-virtualenv automatically by adding
+# the following to ~/.bashrc:
+
+eval "$(pyenv virtualenv-init -)"
+
+chchu@chchu:~$ echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
+chchu@chchu:~$ echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
+chchu@chchu:~$ echo 'eval "$(pyenv init -)"' >> ~/.bashrc
+```
+
+## 2.2 설치 확인
+
+```bash
+chchu@chchu:~$ source ~/.bashrc
+chchu@chchu:~$ pyenv -v
+pyenv 2.4.10
+```
+
+## 2.3 설치 가능한 python 버전 확인
+
+```bash
+chchu@chchu:~$ pyenv install --list
+Available versions:
+  ...
+  3.10.13
+  3.10.14
+  ...
+```
+
+## 2.4 특정 버전의 파이썬 설치
+
+dependecy package 설치
+
+```bash
+$ sudo apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev liblzma-dev libbz2-dev libsqlite3-dev tk-dev
+```
+
+파이썬 설치
+
+```bash
+$ pyenv install 3.10.13
+```
+
+# 3. python 가상환경 만들기
+
+프로젝트 디렉토리 생성 후 해당 디렉토리에 적용되는 pythone 버전을 지정합니다.
+
+```bash
+$ mkdir projects
+$ cd projects
+$ mkdir project_A
+$ cd project_A
+$ pyenv local 3.10.13
+$ python -V
+Python 3.10.13
+```
+
+이제 project_A 디렉토리에 진입하면 pyenv 로 설치된 3.10.13 버전이 적용됩니다.
+
+
+# 4. 소스코드 클론
+
+```bash
+chchu@chchu:~/projects/project_A$ git clone https://github.com/repository/project.git .
+Cloning into '.'...
+Username for 'https://github.com': <username>
+Password for 'https://username@github.com':
+remote: Enumerating objects: 2070, done.
+remote: Counting objects: 100% (2070/2070), done.
+remote: Compressing objects: 100% (1787/1787), done.
+remote: Total 2070 (delta 295), reused 2042 (delta 267), pack-reused 0 (from 0)
+Receiving objects: 100% (2070/2070), 5.41 MiB | 16.95 MiB/s, done.
+Resolving deltas: 100% (295/295), done.
+```
+
+# 5. 파이썬 패키지 설치
+
+> [!TIP]
+> mysqlclient 패키지 설치시 에러가 발생할 수 있다.
+
+```bash
+Collecting mysqlclient==2.2.4
+  Downloading mysqlclient-2.2.4.tar.gz (90 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 90.4/90.4 kB 18.8 MB/s eta 0:00:00
+  Installing build dependencies ... done
+  Getting requirements to build wheel ... error
+  error: subprocess-exited-with-error
+
+  × Getting requirements to build wheel did not run successfully.
+  │ exit code: 1
+  ╰─> [24 lines of output]
+      Trying pkg-config --exists mysqlclient
+      Command 'pkg-config --exists mysqlclient' returned non-zero exit status 1.
+      Trying pkg-config --exists mariadb
+      Command 'pkg-config --exists mariadb' returned non-zero exit status 1.
+      Trying pkg-config --exists libmariadb
+      Command 'pkg-config --exists libmariadb' returned non-zero exit status 1.
+      Traceback (most recent call last):
+        File "/home/chchu/.pyenv/versions/3.10.13/lib/python3.10/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py", line 353, in <module>
+          main()
+        File "/home/chchu/.pyenv/versions/3.10.13/lib/python3.10/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py", line 335, in main
+          json_out['return_val'] = hook(**hook_input['kwargs'])
+        File "/home/chchu/.pyenv/versions/3.10.13/lib/python3.10/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py", line 118, in get_requires_for_build_wheel
+          return hook(config_settings)
+        File "/tmp/pip-build-env-kn7os715/overlay/lib/python3.10/site-packages/setuptools/build_meta.py", line 332, in get_requires_for_build_wheel
+          return self._get_build_requires(config_settings, requirements=[])
+        File "/tmp/pip-build-env-kn7os715/overlay/lib/python3.10/site-packages/setuptools/build_meta.py", line 302, in _get_build_requires
+          self.run_setup()
+        File "/tmp/pip-build-env-kn7os715/overlay/lib/python3.10/site-packages/setuptools/build_meta.py", line 318, in run_setup
+          exec(code, locals())
+        File "<string>", line 155, in <module>
+        File "<string>", line 49, in get_config_posix
+        File "<string>", line 28, in find_package_name
+      Exception: Can not find valid pkg-config name.
+      Specify MYSQLCLIENT_CFLAGS and MYSQLCLIENT_LDFLAGS env vars manually
+      [end of output]
+
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+error: subprocess-exited-with-error
+
+× Getting requirements to build wheel did not run successfully.
+│ exit code: 1
+╰─> See above for output.
+
+note: This error originates from a subprocess, and is likely not a problem with pip.
+```
+
+먼저 libmysqlclient-dev 을 설치합니다.
+
+```bash
+chchu@chchu:~/projects/project_A$ sudo apt install libmysqlclient-dev
+[sudo] password for chchu:
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following additional packages will be installed:
+  libmysqlclient21 libzstd-dev mysql-common
+The following NEW packages will be installed:
+  libmysqlclient-dev libmysqlclient21 libzstd-dev mysql-common
+0 upgraded, 4 newly installed, 0 to remove and 122 not upgraded.
+Need to get 3367 kB of archives.
+After this operation, 17.4 MB of additional disk space will be used.
+Do you want to continue? [Y/n] Y
+Get:1 http://archive.ubuntu.com/ubuntu jammy/main amd64 mysql-common all 5.8+1.0.8 [7212 B]
+Get:2 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libmysqlclient21 amd64 8.0.39-0ubuntu0.22.04.1 [1301 kB]
+Get:3 http://archive.ubuntu.com/ubuntu jammy/main amd64 libzstd-dev amd64 1.4.8+dfsg-3build1 [401 kB]
+Get:4 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libmysqlclient-dev amd64 8.0.39-0ubuntu0.22.04.1 [1658 kB]
+Fetched 3367 kB in 3s (1092 kB/s)
+Selecting previously unselected package mysql-common.
+(Reading database ... 32164 files and directories currently installed.)
+Preparing to unpack .../mysql-common_5.8+1.0.8_all.deb ...
+Unpacking mysql-common (5.8+1.0.8) ...
+Selecting previously unselected package libmysqlclient21:amd64.
+Preparing to unpack .../libmysqlclient21_8.0.39-0ubuntu0.22.04.1_amd64.deb ...
+Unpacking libmysqlclient21:amd64 (8.0.39-0ubuntu0.22.04.1) ...
+Selecting previously unselected package libzstd-dev:amd64.
+Preparing to unpack .../libzstd-dev_1.4.8+dfsg-3build1_amd64.deb ...
+Unpacking libzstd-dev:amd64 (1.4.8+dfsg-3build1) ...
+Selecting previously unselected package libmysqlclient-dev.
+Preparing to unpack .../libmysqlclient-dev_8.0.39-0ubuntu0.22.04.1_amd64.deb ...
+Unpacking libmysqlclient-dev (8.0.39-0ubuntu0.22.04.1) ...
+Setting up mysql-common (5.8+1.0.8) ...
+update-alternatives: using /etc/mysql/my.cnf.fallback to provide /etc/mysql/my.cnf (my.cnf) in auto mode
+Setting up libmysqlclient21:amd64 (8.0.39-0ubuntu0.22.04.1) ...
+Setting up libzstd-dev:amd64 (1.4.8+dfsg-3build1) ...
+Setting up libmysqlclient-dev (8.0.39-0ubuntu0.22.04.1) ...
+Processing triggers for man-db (2.10.2-1) ...
+Processing triggers for libc-bin (2.35-0ubuntu3.4) ...
+```
+
+이제 프로젝트에 필요한 파이썬 패키지를 설치합니다.
+
+```bash
+chchu@chchu:~/projects/project_A$ pip install -r requirements.txt
+```
+
+# 6. Docker 
 
 > [!NOTE]
-> 별도의 소스코드가 준비되어 있다면 이부분은 생략합니다.
+> 호스트 시스템에 Docker Desktop이 이미 설치되어있다고 가정한 후 진행합니다.
+
+## 6.1 mysql
+
+명령 프롬프트를 하나 더 실행 합니다.
+
+- 포트 : 3306
+- root  패스워드 : rootpassword
 
 ```bash
-(venv) D:\docs\python-windows-dev\projects>git clone https://userid@github.com/repo/project.git
-Cloning into 'project'...
+C:\Users\chooc>docker run --name mysql-8.0.36 -e MYSQL_ROOT_PASSWORD=rootpassword -d -p 3306:3306 mysql:8.0.36
+Unable to find image 'mysql:8.0.36' locally
+8.0.36: Pulling from library/mysql
+bd37f6d99203: Pull complete
+d2433cba0951: Pull complete
+13702d9fe3c3: Pull complete
+83bcc87284a1: Pull complete
+c38d8660e1fa: Pull complete
+7e1bc321f421: Pull complete
+bddd54b9c549: Pull complete
+4eaae1e844ac: Pull complete
+5196e1e87d8f: Pull complete
+6586d096303c: Pull complete
+cf55ff1c80af: Pull complete
+Digest: sha256:a532724022429812ec797c285c1b540a644c15e248579c6bfdf12a8fbaab4964
+Status: Downloaded newer image for mysql:8.0.36
+0fa644a4395a87aeb6ad0112772bc228aa118c1f6e2f83a5ec3b80e10e335039
 ```
+![mysql docker](./images/mysql-docker.png)
 
-![Access Token 입력](./images/access-token.png)
-
-# 5. 패키지 설치
-```bash
-(venv) D:\docs\python-windows-dev\projects>cd project
-
-(venv) D:\docs\python-windows-dev\projects\project>dir
- Volume in drive D is data
- Volume Serial Number is 9C6B-7307
-
- Directory of D:\docs\python-windows-dev\projects\project
-
-2024-08-24  오후 01:32    <DIR>          .
-2024-08-24  오후 01:29    <DIR>          ..
-2024-08-24  오후 01:32               363 .gitignore
-...
-2024-08-24  오후 01:32             1,354 requirements.txt
-...
-
-(venv) D:\docs\python-windows-dev\projects\project> 
-```
+## 6.2 redis
