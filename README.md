@@ -2,7 +2,7 @@
 > 본 가이드는 윈도우의 WSL 환경을 기준으로 합니다.
 
 > [!CAUTION]
-> uvicorn 에서 사용하는 uvloop은 리눅스 계엘에서만 설치가능 합니다.
+> uvicorn 에서 사용하는 uvloop은 리눅스 계열에서만 설치가능 합니다.
 
 > [!NOTE]
 > vscode 는 WSL 에서 서버로 실행하여 코드 편집하는 것을 예로 합니다.
@@ -349,7 +349,7 @@ Status: Downloaded newer image for mysql:8.0.36
 ## 6.2 redis
 
 ```bash
-C:\Users\chooc>docker run -p 6379:6379 --name redis -d redis:latest --requirepass "password"
+C:\Users\chooc>docker run -p 6379:6379 --name redis -d redis:latest [--requirepass "password"]
 2ecfcbd8f9e42ab11f277533b877720136f4d297af8b4badbf226f1824cd9010
 ```
 
@@ -389,3 +389,15 @@ VScode 에서 터미널을 실행하고 프로젝트의 파이썬 버전을 확�
 파이썬 버전을 확인합니다.
 
 ![Python Version](./images/vscode-python-version.png)
+
+# 8. 프로젝트 실해
+
+## 8.1 uvicorn 으로 fastAPI 실행
+
+## 8.2 [celery] worker 실행
+
+비동기 타스크 실행
+
+## 8.3 [celery] beat 실행
+
+주기적으로 실행되는 타스크 실행 
