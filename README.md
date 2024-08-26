@@ -390,14 +390,26 @@ VScode 에서 터미널을 실행하고 프로젝트의 파이썬 버전을 확�
 
 ![Python Version](./images/vscode-python-version.png)
 
-# 8. 프로젝트 실해
+# 8. 프로젝트 실행
 
 ## 8.1 uvicorn 으로 fastAPI 실행
+
+```bash
+$ uvicorn main:app --host 0.0.0.0 --reload
+```
 
 ## 8.2 [celery] worker 실행
 
 비동기 타스크 실행
 
+```bash
+$ celery -A worker.celery worker --loglevel=info
+```
+
 ## 8.3 [celery] beat 실행
 
 주기적으로 실행되는 타스크 실행 
+
+```bash
+$ celery -A worker.celery beat -l info
+```
