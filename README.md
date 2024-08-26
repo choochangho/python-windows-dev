@@ -4,7 +4,7 @@
 > [!CAUTION]
 > uvicorn 에서 사용하는 uvloop은 리눅스 계엘에서만 설치가능 합니다.
 
-> [!NOTICE]
+> [!NOTE]
 > vscode 는 WSL 에서 서버로 실행하여 코드 편집하는 것을 예로 합니다.
 
 # 1 WSL 진입
