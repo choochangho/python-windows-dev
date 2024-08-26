@@ -4,6 +4,9 @@
 > [!CAUTION]
 > uvicorn 에서 사용하는 uvloop은 리눅스 계엘에서만 설치가능 합니다.
 
+> [!NOTICE]
+> vscode 는 WSL 에서 서버로 실행하여 코드 편집하는 것을 예로 합니다.
+
 # 1 WSL 진입
 
 명령 프롬프트 실행 후 'wsl' 입력합니다.
@@ -149,22 +152,52 @@ $ pyenv install 3.10.13
 
 # 3. python 가상환경 만들기
 
-프로젝트 디렉토리 생성 후 해당 디렉토리에 적용되는 pythone 버전을 지정합니다.
+프로젝트 디렉토리를 생성합니다.
 
 ```bash
 $ mkdir projects
 $ cd projects
 $ mkdir project_A
 $ cd project_A
-$ pyenv local 3.10.13
+```
+
+# 4. 프로젝트를 위한 pyenv 가상환경 생성
+
+앞서 생성한 파이썬 3.10.13 버전을 베이스로 특정 프로젝트에서 사용할 가상환경을 생성합니다.
+
+생성된 가상환경에 프로젝트에 필요한 패키지를 설치하여 시스템에 설치된 파이썬과 환경을 분리합니다.
+
+```bash
+$ pyenv virtualenv 3.10.13 project_A
+```
+
+생성된 가상환경의 경로를 확인합니다.
+
+```bash
+$ pyenv virtualenvs
+  3.10.13/envs/project_A (created from /home/username/.pyenv/versions/3.10.13)
+  project_A (created from /home/username/.pyenv/versions/3.10.13)
+$ ls ~/.pyenv/versions/
+3.10.13  project_A
+```
+/home/username/.pyenv/version 디렉토리에서 방금 생성한 가상환경을 확인할 수 있습니다.
+
+# 5. pyenv 가상환경 진입
+쉘에서 해당 프로젝트에 필요한 작업을 수행하기 위해 가상환경으로 생성해둔 파이썬을 포함한 기타 바이너리를 사용할 수 있어야 합니다.
+
+프로젝트 폴더에 들어오면 자동으로 이미 생성해둔 가상환경으로 진입할 수 있도록 합니다.
+
+```bash
+$ cd projects/project_A
+$ pyenv local project_A
 $ python -V
 Python 3.10.13
 ```
 
-이제 project_A 디렉토리에 진입하면 pyenv 로 설치된 3.10.13 버전이 적용됩니다.
+> [!CAUTION]
+> pyenv virtualenv 명령 실행 이후 해당 디렉토리에 .python-version 이 생성되므로 SCM 에 포함되지 않도록 주의한다.
 
-
-# 4. 소스코드 클론
+# 6. 소스코드 클론
 
 ```bash
 chchu@chchu:~/projects/project_A$ git clone https://github.com/repository/project.git .
@@ -324,7 +357,15 @@ C:\Users\chooc>docker run -p 6379:6379 --name redis -d redis:latest --requirepas
 
 WSL에 저장된 파이썬 프로젝트를 vscode에서 개발하기 위한 방법입니다.
 
-## 7.1 Extention 설치
+## 7.1 WSL 에서 vscode 실행
+
+프로젝트 루트 디렉토리에서 아래와 같이 실행합니다.
+
+```bash
+$ code .
+```
+
+## 7.2 Extention 설치
 
 - WSL
 - Python
@@ -333,14 +374,6 @@ WSL에 저장된 파이썬 프로젝트를 vscode에서 개발하기 위한 방�
 ![Python Extention](./images/ext-redis.png)
 
 ## 7.2 VScode 프로젝트 설정
-
-먼저 WSL 로 진입하고 프로젝트 폴더로 이동합니다. 프로젝트 루트 디렉토리에서 vscode 를 로드합니다.
-
-```bash
-chchu@chchu:~/projects/project_A$ code .
-```
-
-VSCode 가 실행됩니다.
 
 이제 WSL 에 생성한 파이썬 가상환경을 프로젝트에서 사용할 파이썬 인터프리터로 설정합니다.
 
