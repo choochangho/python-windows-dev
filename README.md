@@ -137,6 +137,7 @@ Available versions:
 dependecy package 설치
 
 ```bash
+$ sudo apt update
 $ sudo apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev liblzma-dev libbz2-dev libsqlite3-dev tk-dev
 ```
 
